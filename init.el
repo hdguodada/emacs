@@ -7,60 +7,41 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'init-packages)
-
+(require 'init-ui)
+(require 'init-better-defaults)
 
 
 ;;
 
 
-;; 关闭工具栏
-(tool-bar-mode -1)
 
-;; 关闭文件滑动控件
-(scroll-bar-mode -1)
 
-;; 显示行号
-(global-linum-mode 1)
 
-;; 更改光标样式
-(setq-default cursor-type 'bar)
 
-;; 关闭启动画面
-(setq-default inhibit-splash-screen 1)
 
-;; 快速打开配置文件
-(defun open-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
 
-;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
-(global-set-key (kbd "<f2>") 'open-init-file)
 
-;; 禁止emacs自动生成备份文件
-(setq make-backup-files nil)
+
+
+
+
+
+
+
 
 ;; org模式中注释里语法高亮
 (require 'org)
 (setq org-src-fontify-natively t)
 
-;; 替换模式
-(delete-selection-mode t)
 
-;; 全屏
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
 
-;; 括号
-(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
-;; 显示当前行
-(global-hl-line-mode t)
 
-;; 加载主题
-;; (load-theme 'monokai t)
 
-;; hungry-delete-mode
-(require 'hungry-delete)
-(global-hungry-delete-mode)
+
+
+
+
 
 
 (global-set-key "\C-s" 'swiper)

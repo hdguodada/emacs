@@ -76,7 +76,6 @@
 
 
 ;; 括号补全
-(require 'smartparens-config)
 (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
 
@@ -95,5 +94,15 @@
 
 ;; themes
 (load-theme 'monokai t)
+
+
+;; hungry-delete-mode
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+
+
+;; 括号
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+
 
 (provide 'init-packages)
