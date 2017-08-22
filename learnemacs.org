@@ -477,3 +477,19 @@ guojing-xxx
 1. 首先我们将所有跟下载的插件跟插件相关的配置放到init-packages.el里，在文件的最后加上(provide 'init-packes)
 2. 在init.el第一行加上(add-to-list 'load-path' "~/.emacs.d/lisp/")
 3. (require 'init-packages)
+   
+** day 4 and day 5
+***   Dired Mode 是一个强大到模式让我们完成和文件管理相关到所有操作
+   使用C-x d 进入 Dired Mode
+   
+   .+ 创建目录
+   .g 刷新目录
+   .C 拷贝
+   .D 删除
+   .R 重命名
+   .d 标记删除
+   .u 取消标记
+   .x 执行所有的标记
+
+
+   

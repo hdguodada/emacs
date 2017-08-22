@@ -15,3 +15,8 @@
 
 ;; 一次性缩进
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+
+
+;; hipe补全
+(global-set-key (kbd "s-/") 'hippie-expand)
+

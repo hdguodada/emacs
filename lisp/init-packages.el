@@ -56,7 +56,7 @@
 
 ;; popwin
 (require 'popwin)
-(popwin-mode t)
+(popwin-mode 1)
 
 ;; company
 (global-company-mode t)
