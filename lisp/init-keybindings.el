@@ -11,3 +11,7 @@
 
 ;; counsel-git 快捷键
 (global-set-key (kbd "C-c p f") 'counsel-git)
+
+
+;; 一次性缩进
+(global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
