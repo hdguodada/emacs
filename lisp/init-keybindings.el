@@ -9,3 +9,5 @@
 (global-set-key (kbd "C-h C-f") 'counsel-describe-function) ;;查看这个函数
 (global-set-key (kbd "C-h C-v") 'counsel-describe-variable) ;;查看这个变量
 
+;; counsel-git 快捷键
+(global-set-key (kbd "C-c p f") 'counsel-git)
