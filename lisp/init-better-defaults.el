@@ -22,3 +22,11 @@
 
 ;; 自动更新对应buffer内容
 (global-auto-revert-mode t)
+
+
+;; 缩写
+ (abbrev-mode t)
+  (define-abbrev-table 'global-abbrev-table '(
+                                              ("8gj" "guojing")
+                                              ))
+
