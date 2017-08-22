@@ -1,8 +1,8 @@
 (when (>= emacs-major-version 24)
-     (require 'package)
-     (package-initialize)
-     (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-		      ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
+  (require 'package)
+  (package-initialize)
+  (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
 
 ;; 注意 elpa.emacs-china.org 是 Emacs China 中文社区在国内搭建的一个 ELPA 镜像
 
@@ -11,36 +11,40 @@
 
 ;; Add Packages
 (defvar my/packages '(
-		;; --- Auto-completion 
-		company ;; 补全
-		;; --- Better Editor ---
-		hungry-delete ;; 一键删除
-		swiper ;; 搜索功能
-		counsel ;; 与swiper一起使用
-		smartparens
-		;; --- Major Mode ---
-		js2-mode
-		;; --- Minor Mode ---
-		nodejs-repl
-		exec-path-from-shell
-		;; --- Themes ---
-		monokai-theme
-		;; solarized-theme
-		popwin
-		) "Default packages")
+		      ;; --- Auto-completion 
+		      company ;; 补全
+		      ;; --- Better Editor ---
+		      hungry-delete ;; 一键删除
+		      swiper ;; 搜索功能
+		      counsel ;; 与swiper一起使用
+		      smartparens
+		      ;; --- Major Mode ---
+		      js2-mode
+		      ;; --- Minor Mode ---
+		      nodejs-repl
+		      exec-path-from-shell
+		      ;; --- Themes ---
+		      monokai-theme
+		      ;; solarized-theme
+		      popwin
+		      ;; web-mode
+		      web-mode
+		      
+		      
+		      ) "Default packages")
 
 (setq package-selected-packages my/packages)
 
 (defun my/packages-installed-p ()
-     (loop for pkg in my/packages	   when (not (package-installed-p pkg)) do (return nil)
-	   finally (return t)))
+  (loop for pkg in my/packages	   when (not (package-installed-p pkg)) do (return nil)
+	finally (return t)))
 
 (unless (my/packages-installed-p)
-     (message "%s" "Refreshing package database...")
-     (package-refresh-contents)
-     (dolist (pkg my/packages)
-       (when (not (package-installed-p pkg))
-	 (package-install pkg))))
+  (message "%s" "Refreshing package database...")
+  (package-refresh-contents)
+  (dolist (pkg my/packages)
+    (when (not (package-installed-p pkg))
+      (package-install pkg))))
 
 ;; Find Executable Path on OS X
 (when (memq window-system '(mac ns x))
@@ -103,6 +107,45 @@
 
 ;; 括号
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+
+
+;; web-mode
+(setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       '(("\\.html\\'" . web-mode))
+       auto-mode-alist))
+
+
+;; web-mode - 缩进
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  )
+(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+
+
+;; 在两个空格和四个空格之间切换
+(defun my-toggle-web-indent ()
+  (interactive)
+  ;; web development
+  (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
+      (progn
+	(setq js-indent-level (if (= js-indent-level 2) 4 2))
+	(setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+
+  (if (eq major-mode 'web-mode)
+      (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
+	     (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+	     (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
+  (if (eq major-mode 'css-mode)
+      (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
+
+  (setq indent-tabs-mode nil))
+
+(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
 
 
 (provide 'init-packages)

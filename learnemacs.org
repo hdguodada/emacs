@@ -478,6 +478,7 @@ guojing-xxx
 2. 在init.el第一行加上(add-to-list 'load-path' "~/.emacs.d/lisp/")
 3. (require 'init-packages)
    
+
 ** day 4 and day 5
 ***   Dired Mode 是一个强大到模式让我们完成和文件管理相关到所有操作
    使用C-x d 进入 Dired Mode
@@ -489,7 +490,9 @@ guojing-xxx
    .R 重命名
    .d 标记删除
    .u 取消标记
-   .x 执行所有的标记
+   .x 执行所有的
 
+** 前端编程神器？
+*** 
 
-   
+                                                                                        

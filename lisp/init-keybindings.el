@@ -20,3 +20,6 @@
 ;; hipe补全
 (global-set-key (kbd "s-/") 'hippie-expand)
 
+
+;; C-x C-j 进入当前文件夹的Dired模式
+(require 'dired-x)

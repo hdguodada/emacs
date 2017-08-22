@@ -25,10 +25,10 @@
 
 
 ;; 缩写
- (abbrev-mode t)
-  (define-abbrev-table 'global-abbrev-table '(
-                                              ("8gj" "guojing")
-                                              ))
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(
+					    ("8gj" "guojing")
+					    ))
 
 ;; 简化yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -67,3 +67,39 @@
 ;; Dired Mode
 (setq dired-recursive-deletes 'always)
 (setq dired-recursive-copies 'always)
+
+
+;;
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; 主动加载 Dired Mode
+;; (require 'dired)
+;; (defined-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+
+;; 延迟加载
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+
+
+;;
+(setq dired-dwin-target 1)
+
+;; 在emacs-lisp下面不补全单引号
+(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
+
+;; 在括号内高亮显示括号
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
+
+
+(defun remove-dos-eol ()
+  "Replace DOS eolns CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+
+
