@@ -29,7 +29,8 @@
 		      popwin
 		      ;; web-mode
 		      web-mode
-		      
+		      ;; js2-refactor
+		      js2-refactor
 		      
 		      ) "Default packages")
 
@@ -145,6 +146,14 @@
   (setq indent-tabs-mode nil))
 
 (global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
+
+;; js2-mrefactor
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
+
+
+
 
 
 
