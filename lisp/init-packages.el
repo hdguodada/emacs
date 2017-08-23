@@ -31,7 +31,10 @@
 		      web-mode
 		      ;; js2-refactor
 		      js2-refactor
-		      
+		      ;; evil
+		      evil
+		      ;; evil-leader
+		      evil-leader
 		      ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -153,7 +156,9 @@
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
 
-
+;; evil mode
+(global-evil-leader-mode)
+(evil-mode 1)
 
 
 

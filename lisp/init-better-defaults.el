@@ -103,3 +103,6 @@
   (while (search-forward "\r" nil t) (replace-match "")))
 
 
+;; evil-mode
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
